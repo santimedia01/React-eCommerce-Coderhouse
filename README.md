@@ -1,5 +1,5 @@
 # ¿Qué es esto?
-Es un proyecto integrador/final del curso de React.js de Coderhouse. [Plan de estudios](https://drive.google.com/file/d/1D3WqoN9zZlzofOPPDiNAbNQQaOALm7UY/view)
+Es un proyecto integrador/final del curso de React.js de Coderhouse. [Plan de estudios](https://drive.google.com/file/d/1mn1_Qjn5Lcmw_jMDp9QHPIUagZbca7LM/view?usp=sharing)
 
 ## [Live Preview (Build de producción automatiado con GH Actions)](https://santimedia01.github.io/React-eCommerce-Coderhouse)
 
