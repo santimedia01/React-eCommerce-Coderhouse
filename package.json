@@ -1,8 +1,8 @@
 {
-  "name": "mi-primer-app-react-jsonplaceholder",
+  "name": "react-ecommerce-coderhouse",
   "version": "0.1.0",
-  "private": false,
-  "homepage": "/React-eCommerce-Coderhouse/",
+  "private": true,
+  "homepage": "https://santimedia01.github.io/React-ReactRouter-MaterialUI-Template/",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -20,6 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "gh-pages-clean": "gh-pages-clean",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"
   },
