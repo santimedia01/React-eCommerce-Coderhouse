@@ -5,12 +5,12 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
  */
 
 import PaginaNoEncontrada from './components/error/404/PaginaNoEncontrada';
-import App from "./App";
+import PaginaPrincipal from "./pages/Principal";
 
 const Router = () => (
   <HashRouter>
       <Switch>
-        <Route exact path="/" component={App}/> 
+        <Route exact path="/" render={() => <PaginaPrincipal greeting="saludos" />} /> 
         <Route component={PaginaNoEncontrada} />
       </Switch>
   </HashRouter>

@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Main() {
+export default function Main(props) {
     return(
         <div>
-            Hello World! v2
+            {props.greeting}
         </div>
     );
 }
