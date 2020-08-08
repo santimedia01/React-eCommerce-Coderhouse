@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/React-eCommerce-Coderhouse/static/css/main.ff862c72.chunk.css",
-    "main.js": "/React-eCommerce-Coderhouse/static/js/main.681cc2cf.chunk.js",
-    "main.js.map": "/React-eCommerce-Coderhouse/static/js/main.681cc2cf.chunk.js.map",
-    "runtime-main.js": "/React-eCommerce-Coderhouse/static/js/runtime-main.7f397c4d.js",
-    "runtime-main.js.map": "/React-eCommerce-Coderhouse/static/js/runtime-main.7f397c4d.js.map",
-    "static/js/2.80c4b3e8.chunk.js": "/React-eCommerce-Coderhouse/static/js/2.80c4b3e8.chunk.js",
-    "static/js/2.80c4b3e8.chunk.js.map": "/React-eCommerce-Coderhouse/static/js/2.80c4b3e8.chunk.js.map",
-    "index.html": "/React-eCommerce-Coderhouse/index.html",
-    "precache-manifest.cd7aa7b65fa45c69e4dc7159ea9aa46e.js": "/React-eCommerce-Coderhouse/precache-manifest.cd7aa7b65fa45c69e4dc7159ea9aa46e.js",
-    "service-worker.js": "/React-eCommerce-Coderhouse/service-worker.js",
-    "static/css/main.ff862c72.chunk.css.map": "/React-eCommerce-Coderhouse/static/css/main.ff862c72.chunk.css.map",
-    "static/js/2.80c4b3e8.chunk.js.LICENSE.txt": "/React-eCommerce-Coderhouse/static/js/2.80c4b3e8.chunk.js.LICENSE.txt",
-    "static/media/404.png": "/React-eCommerce-Coderhouse/static/media/404.c0a4937e.png"
+    "main.css": "/React-ReactRouter-MaterialUI-Template/static/css/main.ff862c72.chunk.css",
+    "main.js": "/React-ReactRouter-MaterialUI-Template/static/js/main.0045b539.chunk.js",
+    "main.js.map": "/React-ReactRouter-MaterialUI-Template/static/js/main.0045b539.chunk.js.map",
+    "runtime-main.js": "/React-ReactRouter-MaterialUI-Template/static/js/runtime-main.8e999708.js",
+    "runtime-main.js.map": "/React-ReactRouter-MaterialUI-Template/static/js/runtime-main.8e999708.js.map",
+    "static/js/2.f3676579.chunk.js": "/React-ReactRouter-MaterialUI-Template/static/js/2.f3676579.chunk.js",
+    "static/js/2.f3676579.chunk.js.map": "/React-ReactRouter-MaterialUI-Template/static/js/2.f3676579.chunk.js.map",
+    "index.html": "/React-ReactRouter-MaterialUI-Template/index.html",
+    "precache-manifest.d45c8ad17532e27c12e2c68b2db8e465.js": "/React-ReactRouter-MaterialUI-Template/precache-manifest.d45c8ad17532e27c12e2c68b2db8e465.js",
+    "service-worker.js": "/React-ReactRouter-MaterialUI-Template/service-worker.js",
+    "static/css/main.ff862c72.chunk.css.map": "/React-ReactRouter-MaterialUI-Template/static/css/main.ff862c72.chunk.css.map",
+    "static/js/2.f3676579.chunk.js.LICENSE.txt": "/React-ReactRouter-MaterialUI-Template/static/js/2.f3676579.chunk.js.LICENSE.txt",
+    "static/media/404.png": "/React-ReactRouter-MaterialUI-Template/static/media/404.c0a4937e.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.7f397c4d.js",
-    "static/js/2.80c4b3e8.chunk.js",
+    "static/js/runtime-main.8e999708.js",
+    "static/js/2.f3676579.chunk.js",
     "static/css/main.ff862c72.chunk.css",
-    "static/js/main.681cc2cf.chunk.js"
+    "static/js/main.0045b539.chunk.js"
   ]
 }
