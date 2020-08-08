@@ -1,8 +1,8 @@
 {
-  "name": "react-reactrouter-materialui-template",
+  "name": "react-ecommerce-coderhouse",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/React-ReactRouter-MaterialUI-Template/",
+  "homepage": "/React-eCommerce-Coderhouse/",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
