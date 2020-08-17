@@ -1,9 +1,9 @@
 import React from 'react';
+import ItemCount from '../components/products/ItemCount'
 
-export default function Main(props) {
+
+export default function Main() {
     return(
-        <div>
-            {props.greeting}
-        </div>
+        <ItemCount itemName="Buzo con capucha con diseño llamarada" initial={Number(1)} min={Number(1)} max={Number(15)} onAdd={(quantity) => alert("Se agregaron " + quantity + " productos al carrito.")} />
     );
 }

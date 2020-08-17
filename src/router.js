@@ -10,7 +10,7 @@ import PaginaPrincipal from "./pages/Principal";
 const Router = () => (
   <HashRouter>
       <Switch>
-        <Route exact path="/" render={() => <PaginaPrincipal greeting="saludos" />} /> 
+        <Route exact path="/" component={PaginaPrincipal} /> 
         <Route component={PaginaNoEncontrada} />
       </Switch>
   </HashRouter>

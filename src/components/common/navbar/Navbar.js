@@ -10,7 +10,6 @@ import StoreIcon from '@material-ui/icons/Store';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 */
 
-
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
@@ -202,7 +201,7 @@ export default function PrimaryAppBar() {
       <AppBar>
         <Toolbar>
           <StoreIcon className={classes.brandLogo} />
-          <Typography variant="h6" noWrap>EJ E-Commerce</Typography>
+          <Typography variant="h6" noWrap>Material E-Commerce</Typography>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {renderSearchBox} 
