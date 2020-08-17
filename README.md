@@ -3,9 +3,6 @@ Es un proyecto integrador/final del curso de React.js de Coderhouse. Plan de est
 
 ## [Live Preview (Build de producción automatizado con GH Actions)](https://santimedia01.github.io/React-eCommerce-Coderhouse/)
 
-El live preview está basado en la rama all-elements-uncommented, donde están todos los elementos sin comentar, visibles, valga la redundancia.
-En la rama master se conservan los elementos comentados
-
 ## Tecnologías / Librerías
 
 1. React con [Create React App](https://github.com/facebook/create-react-app) 
