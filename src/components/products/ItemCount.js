@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { IconButton, makeStyles, Button } from '@material-ui/core';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
+import { IconButton, makeStyles, Button } from '@material-ui/core';
+
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
@@ -29,31 +30,27 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Main(props) {
-    const [quantity, setQuantity] = useState(props.initial);
+export default function Main({initialValue, minValue, maxValue, onAddedToCartTrigger}) {
+    const [quantity, setQuantity] = useState(initialValue);
     const classes = useStyles();
     
     const quantityRemove = () => {
-        if (quantity - 1 >= props.min){
-            setQuantity(quantity - 1);
-        }
+        setQuantity(quantity - 1);
     };
     const quantityAdd = () => {
-        if (quantity + 1 <= props.max){
-            setQuantity(quantity + 1);
-        }
+        setQuantity(quantity + 1);
     };
 
     const onAddedToCart = () => {
-        props.onAdd(quantity);
+        onAddedToCartTrigger(quantity);
     };
 
     return(
         <div className={classes.container}>
             <div className={classes.quantityContainer}>
-                <IconButton onClick={quantityRemove}> <RemoveIcon /> </IconButton>
+                <IconButton onClick={quantityRemove} disabled={quantity <= minValue}> <RemoveIcon /> </IconButton>
                 <span className={classes.quantity}>{quantity}</span>
-                <IconButton onClick={quantityAdd}> <AddIcon /> </IconButton>
+                <IconButton onClick={quantityAdd} disabled={quantity >= maxValue}> <AddIcon /> </IconButton>
             </div>
             <Button className={classes.addToCartButton} onClick={onAddedToCart} variant="contained" color="primary" endIcon={<ShoppingCartIcon>Agregar al carrito</ShoppingCartIcon>}>Al carrito</Button>
         </div>

@@ -1,9 +1,8 @@
 import React from 'react';
-import ItemHomeList from '../components/products/ItemHomeList'
-
+import ItemList from '../components/products/ItemList'
 
 export default function Main() {
     return(
-        <ItemHomeList />
+        <ItemList />
     );
 }
