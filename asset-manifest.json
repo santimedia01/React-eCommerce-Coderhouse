@@ -1,23 +1,24 @@
 {
   "files": {
     "main.css": "/React-eCommerce-Coderhouse/static/css/main.ff862c72.chunk.css",
-    "main.js": "/React-eCommerce-Coderhouse/static/js/main.1d46551e.chunk.js",
-    "main.js.map": "/React-eCommerce-Coderhouse/static/js/main.1d46551e.chunk.js.map",
+    "main.js": "/React-eCommerce-Coderhouse/static/js/main.c1f6c002.chunk.js",
+    "main.js.map": "/React-eCommerce-Coderhouse/static/js/main.c1f6c002.chunk.js.map",
     "runtime-main.js": "/React-eCommerce-Coderhouse/static/js/runtime-main.7f397c4d.js",
     "runtime-main.js.map": "/React-eCommerce-Coderhouse/static/js/runtime-main.7f397c4d.js.map",
-    "static/js/2.37eedc01.chunk.js": "/React-eCommerce-Coderhouse/static/js/2.37eedc01.chunk.js",
-    "static/js/2.37eedc01.chunk.js.map": "/React-eCommerce-Coderhouse/static/js/2.37eedc01.chunk.js.map",
+    "static/js/2.27d6a831.chunk.js": "/React-eCommerce-Coderhouse/static/js/2.27d6a831.chunk.js",
+    "static/js/2.27d6a831.chunk.js.map": "/React-eCommerce-Coderhouse/static/js/2.27d6a831.chunk.js.map",
     "index.html": "/React-eCommerce-Coderhouse/index.html",
-    "precache-manifest.8b51f55e4e7903508345dd1b12f10e81.js": "/React-eCommerce-Coderhouse/precache-manifest.8b51f55e4e7903508345dd1b12f10e81.js",
+    "precache-manifest.b096d225c05f8516f602f572f68cc745.js": "/React-eCommerce-Coderhouse/precache-manifest.b096d225c05f8516f602f572f68cc745.js",
     "service-worker.js": "/React-eCommerce-Coderhouse/service-worker.js",
     "static/css/main.ff862c72.chunk.css.map": "/React-eCommerce-Coderhouse/static/css/main.ff862c72.chunk.css.map",
-    "static/js/2.37eedc01.chunk.js.LICENSE.txt": "/React-eCommerce-Coderhouse/static/js/2.37eedc01.chunk.js.LICENSE.txt",
-    "static/media/404.png": "/React-eCommerce-Coderhouse/static/media/404.c0a4937e.png"
+    "static/js/2.27d6a831.chunk.js.LICENSE.txt": "/React-eCommerce-Coderhouse/static/js/2.27d6a831.chunk.js.LICENSE.txt",
+    "static/media/404.png": "/React-eCommerce-Coderhouse/static/media/404.c0a4937e.png",
+    "static/media/Loading.gif": "/React-eCommerce-Coderhouse/static/media/Loading.829ae23f.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.7f397c4d.js",
-    "static/js/2.37eedc01.chunk.js",
+    "static/js/2.27d6a831.chunk.js",
     "static/css/main.ff862c72.chunk.css",
-    "static/js/main.1d46551e.chunk.js"
+    "static/js/main.c1f6c002.chunk.js"
   ]
 }
