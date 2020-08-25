@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import { makeStyles, Card, CardActionArea, CardActions, CardContent, CardMedia, Button, Typography } from '@material-ui/core';
 
@@ -16,30 +17,34 @@ const useStyles = makeStyles((theme) => ({
         width: "94%",
         justifyContent: "space-between",   
     },
-    linkToItemPage: {
+    textDecorationNone:{
+        textDecoration: 'none',
+        color: 'inherit',
     },
 }));
 
-export default function Main(props) {
+export default function Main({className, id, image, name, description, price}) {
     const classes = useStyles();
 
     return(
-        <div className={props.className}>
+        <div className={className}>
             <Card className={classes.root}>
-                <CardActionArea>
-                    <CardMedia component="img" image={props.image} alt={props.name} title={props.name} />
-                    <CardContent>
-                        <Typography gutterBottom variant="h6" component="h2">
-                            {props.name}
-                        </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {props.description}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
+                <Link to={"/productos/"+id} className={classes.textDecorationNone}>
+                    <CardActionArea>
+                        <CardMedia component="img" image={image} alt={name} title={name} />
+                        <CardContent>
+                            <Typography gutterBottom variant="h6" component="h2">
+                                {name}
+                            </Typography>
+                            <Typography variant="body2" color="textSecondary" component="p">
+                                {description}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                </Link>
                 <CardActions className={classes.cardActions}>
-                    <Typography variant="subtitle1" color="textPrimary" component="p">${props.price}</Typography>
-                    <Button className={classes.linkToItemPage} size="small" color="primary">Ver producto</Button>
+                    <Typography variant="subtitle1" color="textPrimary" component="p">${price}</Typography>
+                    <Button className={classes.linkToItemPage} size="small" color="primary"><Link to={"/productos/"+id} className={classes.textDecorationNone}>Ver producto</Link></Button>
                 </CardActions>
             </Card>
         </div>

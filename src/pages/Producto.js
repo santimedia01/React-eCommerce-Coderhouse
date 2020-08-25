@@ -1,26 +1,7 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
+import {useParams} from 'react-router-dom';
 
-import { makeStyles, Grid, Typography } from '@material-ui/core';
-
-import Loading from '../common/loading/Loading';
-import Item from './Item';
-
-const useStyles = makeStyles((theme) => ({
-    sectionTitles:{
-        textAlign: "center",
-        margin: theme.spacing(2),
-    },
-    container: {
-        display: "flex",
-        flexDirection: "row",
-        flexWrap: "wrap",
-        maxHeight: 350,
-    },
-    item: {
-        marginRight: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-    },
-}));
+import ItemDetail from '../components/products/ItemDetail';
 
 const itemsInDB = [
     {
@@ -96,38 +77,12 @@ const itemsInDB = [
 ];
 
 export default function Main() {
-    const classes = useStyles();
-    
-    const [items, setItems] = useState([]);
-    const [isFetchingItems, setIsFetchingItems] = useState(true);
-    
-    const fetchItems = async () => {
-        setTimeout(() => {
-            setItems(itemsInDB); 
-            setIsFetchingItems(false);
-        }, 2000);
-    };
-
-    useEffect(() => {
-        fetchItems();
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    const {id} = useParams();
+    const actualItem = itemsInDB.filter(item => item.id === Number(id));
     
     return(
         <>
-        <Typography className={classes.sectionTitles} variant="h5" component="div">Ladrillos</Typography>
-        <div className={classes.container}>
-            <Grid
-                container
-                direction="row"
-                justify="center"
-                alignItems="center"
-            >
-                {isFetchingItems ? <Loading /> : items.map(( {id, name, shortSpecs, image, price} )=>(
-                    <Item className={classes.item} key={id} id={id} name={name} description={shortSpecs} image={image} price={price} />
-                ))}
-            </Grid>
-        </div>
+            {actualItem.length > 0 ? <ItemDetail item={actualItem[0]} /> : "No se encontró el item."}
         </>
     );
 }

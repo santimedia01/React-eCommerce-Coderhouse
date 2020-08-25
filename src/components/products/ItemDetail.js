@@ -1,10 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 import { makeStyles, Grid, Typography, Paper, Button } from '@material-ui/core';
 
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
-import ItemCount from './ItemCount';
+import ItemCount from './ItemCount/ItemCount';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -61,42 +61,48 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Main({item}) {
+export default function Main({ item }) {
+    const { image, name, shortSpecs, minProducts, maxProducts, description } = item;
+    const [quantity, setQuantity] = useState(minProducts);
     const classes = useStyles();
+
+    const onQuantityChange = (quantityItemCount) => {
+        setQuantity(quantityItemCount);
+    };
 
     return(
         <div className={classes.root}>
             <Grid className={classes.gridContainer} container spacing={1}>
                 <Grid item xs={12} md={8}>
                     <Paper className={classes.paper} elevation={3}>
-                    <   img src={item.image} className={classes.itemImg} alt={"Imagen de " + item.name} />
+                        <img src={image} className={classes.itemImg} alt={"Imagen de " + name} />
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.bottomContainer} >
                     <div className={classes.paper} elevation={3}>
                         <Typography className={classes.itemName} variant="h4" component="h2">
-                            {item.name}
+                            {name}
                         </Typography>
                         <Typography className={classes.itemName} variant="subtitle1" component="div">
-                            {item.shortSpecs}
+                            {shortSpecs}
                         </Typography>
                     </div>
                     <Paper className={classes.paperBottom} elevation={3}>
-                        <ItemCount initialValue={item.minProducts} minValue={item.minProducts} maxValue={item.maxProducts} onAddedToCartTrigger={(q) => alert(q)} />
+                        <ItemCount initialValue={minProducts} minValue={minProducts} maxValue={maxProducts} onQuantityChange={onQuantityChange} onAddedToCartTrigger={(q) => alert(q)} />
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={8} className={classes.description}>
                     <Typography className={classes.itemDescriptionTitle} variant="h5" component="h3">
                         Descipción del producto
                     </Typography>
-                    {item.description}
+                    {description}
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.buyContainer}>
                     <Button className={classes.buyButton} variant="contained" color="primary" 
                         startIcon={<ShoppingBasketIcon className={classes.buyButtonLeftIcon} />} 
                         endIcon={<ShoppingBasketIcon className={classes.buyButtonRightIcon} />}
                     >
-                        Comprar
+                        Comprar {quantity}
                     </Button>
                 </Grid>
             </Grid>

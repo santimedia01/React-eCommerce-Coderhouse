@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 import { AppBar, Toolbar, IconButton, Typography, Menu, MenuItem, makeStyles, Button, InputBase, Badge, fade } from '@material-ui/core';
  
@@ -11,10 +12,20 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 */
 
 const useStyles = makeStyles((theme) => ({
+  textDecorationNoneDFlex:{
+    textDecoration: 'none',
+    color: 'inherit',
+    display: 'flex',
+  },
+  textDecorationNone:{
+    textDecoration: 'none',
+    color: 'inherit',
+  },
   grow: {
     flexGrow: 1,
   },
   brandLogo: {
+    marginTop: theme.spacing(0.5),
     marginRight: theme.spacing(2),
   },
   search: {
@@ -156,7 +167,7 @@ export default function PrimaryAppBar() {
   );
 
   const renderShoppingCartMenuIcon = (
-    <IconButton href="#" aria-label="carrito de compras" color="inherit">
+    <IconButton aria-label="carrito de compras" color="inherit">
       <Badge badgeContent={0} color="secondary" showZero>
         <ShoppingCartIcon />
       </Badge>
@@ -183,10 +194,12 @@ export default function PrimaryAppBar() {
         <p>Perfil</p>
       </MenuItem>
       */}
-      <MenuItem>
-        {renderShoppingCartMenuIcon}
-        <p>Carrito</p>
-      </MenuItem>
+      <Link to="/carrito" className={classes.textDecorationNone}>
+        <MenuItem>
+          {renderShoppingCartMenuIcon}
+          <p>Carrito</p>
+        </MenuItem>
+      </Link>
       <MenuItem>
         <Button href="#" color="inherit" disableRipple>Iniciar Sesión</Button>
       </MenuItem>
@@ -200,13 +213,17 @@ export default function PrimaryAppBar() {
     <div className={classes.grow}>
       <AppBar>
         <Toolbar>
-          <StoreIcon className={classes.brandLogo} />
-          <Typography variant="h6" noWrap>Material E-Commerce</Typography>
+          <Link to="/" className={classes.textDecorationNoneDFlex}>
+            <StoreIcon className={classes.brandLogo} />
+            <Typography variant="h6" noWrap>Material E-Commerce</Typography>
+          </Link>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {renderSearchBox} 
             {/* MENU DE PERFIL DE USUARIO {renderProfileUserMenuIcon} */}
-            {renderShoppingCartMenuIcon}
+            <Link to="/carrito" className={classes.textDecorationNone}>
+              {renderShoppingCartMenuIcon}
+            </Link>
             <Button href="#" color="inherit">Iniciar Sesión</Button>
             <Button href="#" color="inherit">Crear Cuenta</Button>
           </div>

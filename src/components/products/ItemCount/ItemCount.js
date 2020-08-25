@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 import { Typography, makeStyles, Button, Slider, TextField } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
@@ -50,9 +50,8 @@ const rawClasses = {
     },
 };
 
-export default function Main({ initialValue, minValue, maxValue, onAddedToCartTrigger }) {
+export default function Main({ initialValue, minValue, maxValue, onAddedToCartTrigger, onQuantityChange }) {
     const [quantity, setQuantity] = useState(initialValue);
-
     const classes = useStyles();
 
     const handleSliderChange = (event, newValue) => {
@@ -72,8 +71,19 @@ export default function Main({ initialValue, minValue, maxValue, onAddedToCartTr
     };
 
     const onAddedToCart = () => {
-        onAddedToCartTrigger(quantity);
+        if (typeof onAddedToCartTrigger === 'function'){
+            onAddedToCartTrigger(quantity);
+        }
     };
+
+    // Call Function passed within params when quantity changes
+    useEffect(() => {
+        if (typeof onQuantityChange === 'function'){
+            onQuantityChange(quantity);
+        }
+        
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [quantity]);
 
     return (
         <div className={classes.container}>
@@ -81,8 +91,7 @@ export default function Main({ initialValue, minValue, maxValue, onAddedToCartTr
                 <span className={classes.min}>Min: {minValue}</span>
                 <span className={classes.max}>Max: {maxValue}</span>
             </Typography>
-            <TextField
-                className={classes.inputQuantity}
+            <TextField className={classes.inputQuantity}
                 inputProps={{
                     style: rawClasses.center,
                     step: 1,
@@ -94,8 +103,7 @@ export default function Main({ initialValue, minValue, maxValue, onAddedToCartTr
                 value={quantity}
                 onChange={handleInputChange}
             />
-            <Slider
-                className={classes.slider}
+            <Slider className={classes.slider}
                 value={typeof quantity === 'number' ? quantity : 0}
                 min={minValue}
                 max={maxValue}
@@ -103,7 +111,11 @@ export default function Main({ initialValue, minValue, maxValue, onAddedToCartTr
                 valueLabelDisplay="auto"
                 onChange={handleSliderChange}
             />
-            <Button className={classes.addToCartButton} variant="outlined" color="primary" onClick={onAddedToCart} startIcon={<ShoppingCartIcon />} endIcon={<ShoppingCartIcon />}>Al carrito</Button>
+            <Button className={classes.addToCartButton} variant="outlined" color="primary" onClick={onAddedToCart} 
+                startIcon={<ShoppingCartIcon />} endIcon={<ShoppingCartIcon />}
+            >
+                Al carrito
+            </Button>
         </div>
     );
 
