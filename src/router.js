@@ -6,13 +6,15 @@ import { HashRouter, Route, Switch } from 'react-router-dom';
 
 import PaginaNoEncontrada from './components/error/404/PaginaNoEncontrada';
 import PaginaPrincipal from "./pages/Principal";
+import Navbar from './components/common/navbar/Navbar';
 
 const Router = () => (
   <HashRouter>
-      <Switch>
-        <Route exact path="/" component={PaginaPrincipal} /> 
-        <Route component={PaginaNoEncontrada} />
-      </Switch>
+    <Navbar />
+    <Switch>
+      <Route exact path="/" component={PaginaPrincipal} /> 
+      <Route component={PaginaNoEncontrada} />
+    </Switch>
   </HashRouter>
 );
 

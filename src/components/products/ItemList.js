@@ -102,8 +102,8 @@ export default function Main() {
                 justify="center"
                 alignItems="center"
             >
-                {isFetchingItems ? <Loading /> : items.map((item)=>(
-                    <Item className={classes.item} key={item.id} name={item.name} description={item.shortDescription} image={item.image} price={item.price} />
+                {isFetchingItems ? <Loading /> : items.map(( {id, name, shortDescription, image, price} )=>(
+                    <Item className={classes.item} key={id} name={name} description={shortDescription} image={image} price={price} />
                 ))}
             </Grid>
         </div>

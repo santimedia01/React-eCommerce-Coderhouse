@@ -3,11 +3,11 @@ import React from 'react';
 import LoadingGif from './Loading.gif';
 
 
-export default function Main(props) {
+export default function Main({gifHeight = 50}) {
     const loadingGif = {
         display: 'flex',
         margin: 'auto',
-        height: 50,
+        height: gifHeight,
     };
 
     return (
