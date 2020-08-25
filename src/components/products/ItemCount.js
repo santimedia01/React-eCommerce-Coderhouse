@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { Typography, makeStyles, Button, Slider, TextField, fade } from '@material-ui/core';
+import { Typography, makeStyles, Button, Slider, TextField } from '@material-ui/core';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import './ItemCount.css'
