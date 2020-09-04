@@ -7,6 +7,8 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import SearchIcon from '@material-ui/icons/Search';
 import StoreIcon from '@material-ui/icons/Store';
+
+import {useCartContext} from '../../../contexts/cartContext';
 /*
 import AccountCircle from '@material-ui/icons/AccountCircle';
 */
@@ -101,6 +103,7 @@ export default function PrimaryAppBar() {
   /* MENU PERFIL DE USUARIO 
   const [profileMenuAnchorEl, setProfileMenuAnchorEl] = React.useState(null);
   */
+  const {cart} = useCartContext();
 
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
   /* MENU PERFIL DE USUARIO
@@ -168,7 +171,7 @@ export default function PrimaryAppBar() {
 
   const renderShoppingCartMenuIcon = (
     <IconButton aria-label="carrito de compras" color="inherit">
-      <Badge badgeContent={0} color="secondary" showZero>
+      <Badge badgeContent={cart.totalItemQuantity} color="secondary" showZero max={9999}>
         <ShoppingCartIcon />
       </Badge>
     </IconButton>

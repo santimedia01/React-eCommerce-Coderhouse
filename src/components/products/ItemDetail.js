@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 
 import { makeStyles, Grid, Typography, Paper, Button } from '@material-ui/core';
-
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import ItemCount from './ItemCount/ItemCount';
+
+import {useCartContext} from '../../contexts/cartContext';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -62,12 +63,24 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Main({ item }) {
-    const { image, name, shortSpecs, minProducts, maxProducts, description } = item;
+    const { name, shortSpecs, description, image, minProducts, maxProducts } = item;
     const [quantity, setQuantity] = useState(minProducts);
+    const {addItem, deleteCartItems} = useCartContext();
     const classes = useStyles();
 
     const onQuantityChange = (quantityItemCount) => {
         setQuantity(quantityItemCount);
+    };
+
+    const onAddedToCart = (itemNewQuantity) => {
+        addItem({
+            ...item,
+            quantity: itemNewQuantity,
+        });
+    };
+
+    const deleteCart = () => {
+        deleteCartItems();
     };
 
     return(
@@ -88,7 +101,7 @@ export default function Main({ item }) {
                         </Typography>
                     </div>
                     <Paper className={classes.paperBottom} elevation={3}>
-                        <ItemCount initialValue={minProducts} minValue={minProducts} maxValue={maxProducts} onQuantityChange={onQuantityChange} onAddedToCartTrigger={(q) => alert(q)} />
+                        <ItemCount initialValue={minProducts} minValue={minProducts} maxValue={maxProducts} onQuantityChange={onQuantityChange} onAddedToCartTrigger={onAddedToCart} />
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={8} className={classes.description}>
@@ -96,6 +109,10 @@ export default function Main({ item }) {
                         Descipción del producto
                     </Typography>
                     {description}
+                    <br />
+                    <br />
+                    <br />
+                    <Button variant="contained" color="primary" onClick={deleteCart}>Eliminar carrito [este botón después lo borro de acá]</Button>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.buyContainer}>
                     <Button className={classes.buyButton} variant="contained" color="primary" 

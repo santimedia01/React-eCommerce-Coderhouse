@@ -10,15 +10,19 @@ import Producto from "./pages/Producto";
 import Carrito from "./pages/Carrito";
 import Navbar from './components/common/navbar/Navbar';
 
+import {CartProvider} from './contexts/cartContext';
+
 const Router = () => (
   <HashRouter>
-    <Navbar />
-    <Switch>
-      <Route exact path="/" component={PaginaPrincipal} />
-      <Route exact path="/carrito" component={Carrito} />
-      <Route path="/productos/:id" component={Producto} />
-      <Route component={PaginaNoEncontrada} />
-    </Switch>
+    <CartProvider>
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={PaginaPrincipal} />
+        <Route exact path="/carrito" component={Carrito} />
+        <Route path="/productos/:id" component={Producto} />
+        <Route component={PaginaNoEncontrada} />
+      </Switch>
+    </CartProvider>
   </HashRouter>
 );
 
