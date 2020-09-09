@@ -1,7 +1,7 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'; 
+import { HashRouter, Route, Switch } from 'react-router-dom'; 
 /** Si se posee un back-end con Peticiones Dinámicas, usar BrowserRouter
- * sinó, si se está utilizando algo como Github Pages (Sitios Estáticos) usar BrowserRouter
+ * sinó, si se está utilizando algo como Github Pages (Sitios Estáticos) usar HashRouter
  */
 
 import PaginaNoEncontrada from './components/error/404/PaginaNoEncontrada';
@@ -13,7 +13,7 @@ import Navbar from './components/common/navbar/Navbar';
 import {CartProvider} from './contexts/cartContext';
 
 const Router = () => (
-  <BrowserRouter>
+  <HashRouter>
     <CartProvider>
       <Navbar />
       <Switch>
@@ -23,7 +23,7 @@ const Router = () => (
         <Route component={PaginaNoEncontrada} />
       </Switch>
     </CartProvider>
-  </BrowserRouter>
+  </HashRouter>
 );
 
 export default Router;
