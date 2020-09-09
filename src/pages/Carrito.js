@@ -30,7 +30,9 @@ const useStyles = makeStyles((theme) => ({
     },
     quantities: {
         display: 'inline-flex',
-        paddingLeft: theme.spacing(1),
+        [theme.breakpoints.up('md')]: {
+            paddingLeft: theme.spacing(3),
+        },
         fontSize: 16,
     },
     deleteCartButton: {
@@ -49,11 +51,18 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none',
         color: 'inherit',
     },
+    total: {
+        marginTop: theme.spacing(3),
+        textAlign: 'right',
+    },
+    toCheckoutButton: {
+        marginTop: theme.spacing(2),
+    },
 }));
 
 export default function Main() {
     const classes = useStyles();
-    const { isCartEmpty, cart, deleteAllCartItems } = useCartContext();
+    const { cart, deleteAllCartItems, totalCartPrice, isCartEmpty } = useCartContext();
 
     const onCartDelete = () => deleteAllCartItems();
 
@@ -67,13 +76,21 @@ export default function Main() {
         </Paper>
     );
 
+    
+
+    const renderTotalPrice = (
+        <div className={classes.total}>
+            <Typography variant="h6" color="primary">Total: $<strong>{totalCartPrice()}</strong></Typography>
+            <Button className={classes.toCheckoutButton} variant="contained" size="small" color="primary">Proceder al Checkout</Button>
+        </div>
+    );
+
     return(
         <Container maxWidth="md" className={classes.container}>
             <div className={classes.titleContainer}>
                 <Typography className={classes.info} variant="h5" component="h1">
                     <span className={classes.title}><strong>Carrito de compras</strong></span>
                     <div className={classes.quantities} variant="subtitle1">Total items: {cart.totalItemQuantity}</div>
-                    <div className={classes.quantities} variant="subtitle1">Total precio: X</div>
                 </Typography>
                 <Button className={classes.deleteCartButton} variant="outlined" color="secondary" endIcon={<DeleteForeverIcon />}
                     onClick={onCartDelete}
@@ -83,12 +100,14 @@ export default function Main() {
             </div>
 
             <List>
-                {   
-                    isCartEmpty() ? renderEmptyCartInfo : 
-                    cart.items.map((item) => <CartItem key={item.id} item={item} />)
+                {
+                    isCartEmpty() ? renderEmptyCartInfo :
+                    <>
+                        { cart.items.sort((item, nextItem) => item.order - nextItem.order).map((item) => <CartItem key={item.id} item={item} />) }
+                        { renderTotalPrice }
+                    </>
                 }
             </List>
-                    
             
         </Container>
     );

@@ -5,7 +5,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 
-//import {useCartContext} from '../../contexts/cartContext';
+import {useCartContext} from '../../contexts/cartContext';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -94,11 +94,10 @@ export default function Main({ item }) {
 
     const classes = useStyles();
     const [inputsQuantity, setInputsQuantity] = React.useState(quantity);
-    //const { isCartEmpty, cart, deleteAllCartItems, modifyItemQuantity } = useCartContext();
+    const { deleteCartItem, modifyItemQuantity } = useCartContext();
 
     React.useEffect(() => {
-        //modifyItemQuantity(id, quantity);
-        //console.log(inputsQuantity);
+        modifyItemQuantity(id, inputsQuantity);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inputsQuantity]);
@@ -122,14 +121,18 @@ export default function Main({ item }) {
     const onOneItemRemove = () => {
         setInputsQuantity(inputsQuantity - 1);
     };
+    
+    const onItemDelete = () => {
+        deleteCartItem(id);
+    };
 
     return(
-        <Paper key={id} elevation={3} className={classes.paper}>
+        <Paper elevation={3} className={classes.paper}>
             <ListItem>
                 <Grid container spacing={1}>
                     <Grid container item xs={11} className={classes.itemCartProduct}>
                         <Grid item xs={12} sm={5} md={2}>
-                            <img className={classes.image} src={image} alt={"imagen del producto" + name } />
+                            <img className={classes.image} src={image} alt={`imagen del producto ${name}` } />
                         </Grid>
 
                         <Grid item xs={12} sm={7} md={4} className={classes.titleAndDescription}>
@@ -173,7 +176,7 @@ export default function Main({ item }) {
                     </Grid>
                     
                     <Grid item xs={1} className={classes.deleteItemButtonContainer}>
-                        <IconButton color="secondary" onClick={() => alert("eliminado")}>
+                        <IconButton color="secondary" onClick={onItemDelete}>
                             <DeleteIcon />
                         </IconButton>  
                     </Grid>
