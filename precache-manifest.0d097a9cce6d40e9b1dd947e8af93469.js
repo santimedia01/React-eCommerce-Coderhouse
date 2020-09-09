@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f8b04081f14e4fc94a0e6286a996ee14",
+    "revision": "efc3abc8081ca400604bcca67d11ff5f",
     "url": "/React-eCommerce-Coderhouse/index.html"
   },
   {
-    "revision": "7933c8644a10bbf7ff43",
+    "revision": "53d798b642cf7d5ddd39",
     "url": "/React-eCommerce-Coderhouse/static/css/main.4e613fac.chunk.css"
   },
   {
-    "revision": "7f24dc1a30ceb77bb103",
-    "url": "/React-eCommerce-Coderhouse/static/js/2.b8f4cfd0.chunk.js"
+    "revision": "4b42d0b9c80f5bcf2174",
+    "url": "/React-eCommerce-Coderhouse/static/js/2.07d5fb9b.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/React-eCommerce-Coderhouse/static/js/2.b8f4cfd0.chunk.js.LICENSE.txt"
+    "url": "/React-eCommerce-Coderhouse/static/js/2.07d5fb9b.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "7933c8644a10bbf7ff43",
-    "url": "/React-eCommerce-Coderhouse/static/js/main.ae24c49d.chunk.js"
+    "revision": "53d798b642cf7d5ddd39",
+    "url": "/React-eCommerce-Coderhouse/static/js/main.7245a82d.chunk.js"
   },
   {
     "revision": "e7fa366a7984eb724fa9",
