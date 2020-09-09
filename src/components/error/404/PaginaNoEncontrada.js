@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom'
 
 import { Typography, Button, makeStyles } from '@material-ui/core';
 
@@ -11,23 +12,32 @@ const useStyles = makeStyles((theme) => ({
     title: {
         marginBottom: theme.spacing(2),
     },
+    subTitle: {
+        marginBottom: theme.spacing(2),
+    },
     button: {
         marginBottom: theme.spacing(3),
     },
+    textDecorationNone:{
+        textDecoration: 'none',
+        color: 'inherit',
+    },
 }));
 
-export default function PaginaNoEncontrada () {
+export default function PaginaNoEncontrada ({productNotFound = false}) {
     const classes = useStyles();
+
     return(
         <div className={classes.container}>
             <Typography className={classes.title} variant="h3" component="h1">¡Buscamos! <br /> pero <br /> sin éxito</Typography>
-            <Button className={classes.button} variant="outlined" color="primary" href="/">Volver a la Página Principal</Button>
+            {productNotFound ? 
+                <Typography className={classes.subTitle} variant="h4" component="h2">Producto no encontrado</Typography> : ''
+            }
+            <Link to="/" className={classes.textDecorationNone}>
+                <Button className={classes.button} variant="outlined" color="primary" href="/" component="div">Volver a la Página Principal</Button>
+            </Link>
             <br />
             <img className={classes.img} src={Imagen404} width="300px" height="300px" alt="Representación ilustrada del error 404" />
         </div>
     );
 }
-
-/*
-    Créditos a https://error404.fun/ por la imagen del error 404!
-*/

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 
 import { makeStyles, Grid, Typography, Paper, Button } from '@material-ui/core';
-import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 
 import ItemCount from './ItemCount/ItemCount';
 
@@ -20,20 +19,33 @@ const useStyles = makeStyles((theme) => ({
         margin: theme.spacing(2),
         textAlign: 'center',
     },
-    bottomContainer: {
-    },
     paperBottom: {
+        marginTop: theme.spacing(2),
+        [theme.breakpoints.only('sm')]: {
+            marginLeft: theme.spacing(6),
+            marginRight: theme.spacing(6),
+        },
+        [theme.breakpoints.up('md')]: {
+            marginTop: theme.spacing(-1.8),
+        },
+        [theme.breakpoints.up('lg')]: {
+            marginTop: theme.spacing(3.1),
+        },
     },
     itemImg: {
         maxWidth: '100%',
         maxHeight: 400,
     },
-    itemName:{
+    productName:{
+        padding: theme.spacing(1),
+        minHeight: 98,
+    },
+    paddingTop:{
         padding: theme.spacing(1),
     },
     description: {
         textAlign: 'center',
-        padding: theme.spacing(1),
+        padding: theme.spacing(3) + 'px !important',
         marginTop: theme.spacing(2),
         [theme.breakpoints.up('md')]: {
             padding: theme.spacing(5) + "px !important",
@@ -54,18 +66,12 @@ const useStyles = makeStyles((theme) => ({
         width: "80%",
         maxHeight: 36,
     },
-    buyButtonLeftIcon: {
-        marginRight: theme.spacing(5),
-    },
-    buyButtonRightIcon: {
-        marginLeft: theme.spacing(5),
-    },
 }));
 
 export default function Main({ item }) {
-    const { name, shortSpecs, description, image, minProducts, maxProducts } = item;
+    const { id, name, price, shortSpecs, description, image, minProducts, maxProducts } = item;
     const [quantity, setQuantity] = useState(minProducts);
-    const {addItem, deleteCartItems} = useCartContext();
+    const {addItem, deleteCartItem} = useCartContext();
     const classes = useStyles();
 
     const onQuantityChange = (quantityItemCount) => {
@@ -79,8 +85,8 @@ export default function Main({ item }) {
         });
     };
 
-    const deleteCart = () => {
-        deleteCartItems();
+    const onDeletedFromCart = () => {
+        deleteCartItem(id);
     };
 
     return(
@@ -91,17 +97,24 @@ export default function Main({ item }) {
                         <img src={image} className={classes.itemImg} alt={"Imagen de " + name} />
                     </Paper>
                 </Grid>
-                <Grid item xs={12} md={4} className={classes.bottomContainer} >
+                <Grid item xs={12} md={4}>
                     <div className={classes.paper} elevation={3}>
-                        <Typography className={classes.itemName} variant="h4" component="h2">
+                        <Typography className={classes.productName} variant="h4" component="h2">
                             {name}
                         </Typography>
-                        <Typography className={classes.itemName} variant="subtitle1" component="div">
+                        <Typography className={classes.paddingTop} variant="subtitle1" component="div">
                             {shortSpecs}
+                        </Typography>
+                        <Typography className={classes.paddingTop} variant="subtitle1" component="div">
+                            Precio Unitario
+                            <br />
+                            <strong>{price}</strong>
                         </Typography>
                     </div>
                     <Paper className={classes.paperBottom} elevation={3}>
-                        <ItemCount initialValue={minProducts} minValue={minProducts} maxValue={maxProducts} onQuantityChange={onQuantityChange} onAddedToCartTrigger={onAddedToCart} />
+                        <ItemCount initialValue={minProducts} minValue={minProducts} maxValue={maxProducts} 
+                            onQuantityChange={onQuantityChange} onCartItemAdded={onAddedToCart} onCartItemDeleted={onDeletedFromCart}
+                        />
                     </Paper>
                 </Grid>
                 <Grid item xs={12} md={8} className={classes.description}>
@@ -109,16 +122,9 @@ export default function Main({ item }) {
                         Descipción del producto
                     </Typography>
                     {description}
-                    <br />
-                    <br />
-                    <br />
-                    <Button variant="contained" color="primary" onClick={deleteCart}>Eliminar carrito [este botón después lo borro de acá]</Button>
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.buyContainer}>
-                    <Button className={classes.buyButton} variant="contained" color="primary" 
-                        startIcon={<ShoppingBasketIcon className={classes.buyButtonLeftIcon} />} 
-                        endIcon={<ShoppingBasketIcon className={classes.buyButtonRightIcon} />}
-                    >
+                    <Button className={classes.buyButton} variant="contained" color="primary">
                         Comprar {quantity}
                     </Button>
                 </Grid>

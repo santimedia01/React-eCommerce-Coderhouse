@@ -2,6 +2,7 @@ import React from 'react';
 import {useParams} from 'react-router-dom';
 
 import ItemDetail from '../components/products/ItemDetail';
+import PaginaNoEncontrada from '../components/error/404/PaginaNoEncontrada';
 
 const itemsInDB = [
     {
@@ -82,7 +83,7 @@ export default function Main() {
     
     return(
         <>
-            {actualItem.length > 0 ? <ItemDetail item={actualItem[0]} /> : "No se encontró el item."}
+            {actualItem.length > 0 ? <ItemDetail item={actualItem[0]} /> : <PaginaNoEncontrada  productNotFound/>}
         </>
     );
 }

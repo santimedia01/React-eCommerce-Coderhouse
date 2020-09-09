@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
 import { Typography, makeStyles, Button, Slider, TextField } from '@material-ui/core';
-import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 import './ItemCount.css'
 
@@ -37,9 +36,15 @@ const useStyles = makeStyles((theme) => ({
         marginLeft: "auto",
         marginRight: "auto",
     },
-    addToCartButton: {
+    buttonContainer: {
         marginTop: theme.spacing(2),
-        '&:hover':{
+        display: 'flex',
+    },
+    deleteCartButton: {
+        flexBasis: '60%',
+        marginLeft: theme.spacing(1),
+        [theme.breakpoints.only('md')]: {
+            wordSpacing: 150000,
         },
     },
 }));
@@ -50,7 +55,7 @@ const rawClasses = {
     },
 };
 
-export default function Main({ initialValue, minValue, maxValue, onAddedToCartTrigger, onQuantityChange }) {
+export default function Main({ initialValue, minValue, maxValue, onCartItemAdded, onCartItemDeleted, onQuantityChange }) {
     const [quantity, setQuantity] = useState(initialValue);
     const classes = useStyles();
 
@@ -71,12 +76,17 @@ export default function Main({ initialValue, minValue, maxValue, onAddedToCartTr
     };
 
     const onAddedToCart = () => {
-        if (typeof onAddedToCartTrigger === 'function'){
-            onAddedToCartTrigger(quantity);
+        if (typeof onCartItemAdded === 'function'){
+            onCartItemAdded(quantity);
         }
     };
 
-    // Call Function passed within params when quantity changes
+    const onCartItemDeletedClick = () => {
+        if (typeof onCartItemDeleted === 'function'){
+            onCartItemDeleted();
+        }
+    };
+
     useEffect(() => {
         if (typeof onQuantityChange === 'function'){
             onQuantityChange(quantity);
@@ -111,11 +121,18 @@ export default function Main({ initialValue, minValue, maxValue, onAddedToCartTr
                 valueLabelDisplay="auto"
                 onChange={handleSliderChange}
             />
-            <Button className={classes.addToCartButton} variant="outlined" color="primary" onClick={onAddedToCart} 
-                startIcon={<ShoppingCartIcon />} endIcon={<ShoppingCartIcon />}
-            >
-                Al carrito
-            </Button>
+            <div className={classes.buttonContainer}>
+                <Button variant="outlined" color="primary" fullWidth
+                    onClick={onAddedToCart} 
+                >
+                    Al carrito
+                </Button>
+                <Button className={classes.deleteCartButton} variant="outlined" color="secondary" fullWidth
+                    onClick={onCartItemDeletedClick}
+                >
+                    Eliminar item
+                </Button>
+            </div>
         </div>
     );
 

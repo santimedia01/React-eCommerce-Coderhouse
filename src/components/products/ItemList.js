@@ -105,11 +105,12 @@ export default function Main() {
         setTimeout(() => {
             setItems(itemsInDB); 
             setIsFetchingItems(false);
-        }, 2000);
+        }, 500);
     };
 
     useEffect(() => {
         fetchItems();
+
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     

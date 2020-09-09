@@ -72,7 +72,7 @@ const useStyles = makeStyles((theme) => ({
       paddingLeft: '1em',
     },
     [theme.breakpoints.up('md')]: {
-      width: '17ch',
+      width: '22ch',
       '&:focus': {
         width: '28ch',
       },
