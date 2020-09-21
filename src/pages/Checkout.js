@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { makeStyles, Grid, Typography, Container, Button, TextField, setRef } from '@material-ui/core';
+import { makeStyles, Grid, Typography, Container, Button, TextField } from '@material-ui/core';
 
 import {useCartContext} from '../contexts/cartContext';
 
@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Main(){
     const classes = useStyles();
-    const { cart, deleteAllCartItems, totalCartPrice, isCartEmpty } = useCartContext();
+    //const { cart } = useCartContext();
 
     const [orderShipped, setOrderShipped] = React.useState(false);
 
@@ -27,6 +27,7 @@ export default function Main(){
     const [telefono, setTelefono] = React.useState("");
 
     const onOrderSent = () => {
+        /*
         const data = {
             buyer: {
                 name: nombres,
@@ -40,6 +41,7 @@ export default function Main(){
             ],
             date: "date",
         };
+        */
         
         setOrderShipped(true);        
     };
