@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import { List, Button,Typography, makeStyles, Container, Paper } from '@material-ui/core';
+import { List, Button, Typography, makeStyles, Container, Paper } from '@material-ui/core';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever';
 
 import {useCartContext} from '../contexts/cartContext';
@@ -76,12 +76,12 @@ export default function Main() {
         </Paper>
     );
 
-    
-
     const renderTotalPrice = (
         <div className={classes.total}>
             <Typography variant="h6" color="primary">Total: $<strong>{totalCartPrice()}</strong></Typography>
-            <Button className={classes.toCheckoutButton} variant="contained" size="small" color="primary">Proceder al Checkout</Button>
+            <Link to="/checkout">
+                <Button className={classes.toCheckoutButton} variant="contained" size="small" color="primary">Proceder al Checkout</Button>
+            </Link>
         </div>
     );
 

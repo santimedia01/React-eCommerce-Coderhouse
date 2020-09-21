@@ -73,6 +73,10 @@ export default function Main({ item }) {
     const [quantity, setQuantity] = useState(minProducts);
     const {addItem, deleteCartItem} = useCartContext();
     const classes = useStyles();
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.getMonth() + 1;
+    const year = today.getFullYear();
 
     const onQuantityChange = (quantityItemCount) => {
         setQuantity(quantityItemCount);

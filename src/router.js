@@ -8,6 +8,7 @@ import PaginaNoEncontrada from './components/error/404/PaginaNoEncontrada';
 import PaginaPrincipal from "./pages/Principal";
 import Producto from "./pages/Producto";
 import Carrito from "./pages/Carrito";
+import Checkout from "./pages/Checkout";
 import Navbar from './components/common/navbar/Navbar';
 
 import {CartProvider} from './contexts/cartContext';
@@ -19,6 +20,7 @@ const Router = () => (
       <Switch>
         <Route exact path="/" component={PaginaPrincipal} />
         <Route exact path="/carrito" component={Carrito} />
+        <Route exact path="/checkout" component={Checkout} />
         <Route path="/productos/:id" component={Producto} />
         <Route component={PaginaNoEncontrada} />
       </Switch>

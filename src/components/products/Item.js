@@ -23,13 +23,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function Main({className, id, image, name, description, price}) {
+export default function Main({className, image, name, description, price, uniqueProductUrlName}) {
     const classes = useStyles();
 
     return(
         <div className={className}>
             <Card className={classes.root}>
-                <Link to={"/productos/"+id} className={classes.textDecorationNone}>
+                <Link to={"/productos/"+uniqueProductUrlName} className={classes.textDecorationNone}>
                     <CardActionArea>
                         <CardMedia component="img" image={image} alt={name} title={name} />
                         <CardContent>
@@ -44,7 +44,7 @@ export default function Main({className, id, image, name, description, price}) {
                 </Link>
                 <CardActions className={classes.cardActions}>
                     <Typography variant="subtitle1" color="textPrimary" component="p">${price}</Typography>
-                    <Button className={classes.linkToItemPage} size="small" color="primary"><Link to={"/productos/"+id} className={classes.textDecorationNone}>Ver producto</Link></Button>
+                    <Button className={classes.linkToItemPage} size="small" color="primary"><Link to={"/productos/"+uniqueProductUrlName} className={classes.textDecorationNone}>Ver producto</Link></Button>
                 </CardActions>
             </Card>
         </div>

@@ -20,10 +20,6 @@ export function CartProvider ({initialValue = emptyCart, children}){
         // Save only id's in Database if is an autenticated user
         // Save only id's in LocalStorage
     }, [cart]);
-
-    useEffect(() => {
-        console.log(cart)
-    }, [cart]);
     
     function checkIfCartItemExists (itemId){
         const existingItem = cart.items.filter(item => item.id === itemId);
@@ -44,6 +40,8 @@ export function CartProvider ({initialValue = emptyCart, children}){
 
         return price.toLocaleString();
     };
+
+    // TODO: OPTIMIZAR CODIGO de modifyitemquantity y addItem, son redundandtes, mal planteadas las funciones
 
     function modifyItemQuantity(itemId, quantity){
         const { itemExists, existingItem, cartItemsWithoutThisItem } = checkIfCartItemExists(itemId);
