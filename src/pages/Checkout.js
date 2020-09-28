@@ -1,8 +1,10 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom'; 
 
 import { makeStyles, Grid, Typography, Container, Button, TextField } from '@material-ui/core';
 
-//import {useCartContext} from '../contexts/cartContext';
+import {useCartContext} from '../contexts/cartContext';
+import {createNewBuyOrder} from '../services/firebase/firestoreService';
 
 const useStyles = makeStyles((theme) => ({
     title:{
@@ -15,35 +17,42 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Main(){
+    const { cart, totalCartPrice, isCartEmpty } = useCartContext();
+    
     const classes = useStyles();
-    //const { cart } = useCartContext();
-
     const [orderShipped, setOrderShipped] = React.useState(false);
-
-    // Pendiente mejora de implementación deformularios
+    
+    // Pendiente mejora de la implementación de formularios
     const [nombres, setNombres] = React.useState("");
     const [apellidos, setApellidos] = React.useState("");
     const [email, setEmail] = React.useState("");
     const [telefono, setTelefono] = React.useState("");
+    
+    if(isCartEmpty()){
+        return(
+            <Redirect to="/" />
+        );
+    }
 
     const onOrderSent = () => {
-        /*
-        const data = {
-            buyer: {
-                name: nombres,
-                surname: apellidos,
-                email: email,
-                phone: telefono,
-            },
-            // Pendiente mejora del context de la app, para no redundar en los cálculos totales de los artículos
-            items: [
-                ...cart.items,
-            ],
-            date: "date",
+        const buyer = {
+            name: nombres,
+            surname: apellidos,
+            email: email,
+            phone: telefono,
         };
-        */
+
+        const items = [
+            ...cart.items.map((item) => ({id: item.id, quantity: item.quantity})),
+        ];
         
-        setOrderShipped(true);        
+        const onRequestCompleted = () => {
+            setOrderShipped(true);
+            console.log("shipped");
+        };
+
+        // Pendiente mejora del context de la app, para no redundar en los cálculos totales de los artículos
+        createNewBuyOrder(buyer, items, totalCartPrice(), onRequestCompleted);
     };
 
     return (

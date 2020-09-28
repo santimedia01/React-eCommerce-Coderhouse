@@ -29,80 +29,47 @@ export function CartProvider ({initialValue = emptyCart, children}){
     }
 
     function isCartEmpty (){
-        return cart.items.length <= 0;
+        return cart.totalItemQuantity === 0;
     }
 
     function totalCartPrice () {
         const reducer = (accumulator, currentItem) => 
             accumulator + currentItem.quantity * currentItem.price;
-   
-        const price = cart.items.reduce(reducer, 0);
 
-        return price.toLocaleString();
+        const price = cart.items.reduce(reducer, 0);
+        return price;
     };
 
-    // TODO: OPTIMIZAR CODIGO de modifyitemquantity y addItem, son redundandtes, mal planteadas las funciones
+    function addItem(newItem){
+        const { id, quantity, minProducts, maxProducts } = newItem;
+        const { itemExists, existingItem, cartItemsWithoutThisItem } = checkIfCartItemExists(id);
 
-    function modifyItemQuantity(itemId, quantity){
-        const { itemExists, existingItem, cartItemsWithoutThisItem } = checkIfCartItemExists(itemId);
+        let cartItems = cartItemsWithoutThisItem;
+        let newItemQuantity = quantity;
+        let itemOrder = cart.items.length + 1;
+        let totalItemQuantity = cart.totalItemQuantity;
         
         if(itemExists){
-            let newItemQuantity = quantity;
-            let newTotalItemQuantity = cart.totalItemQuantity - existingItem[0].quantity;
-
-            if (newItemQuantity > existingItem[0].maxProducts) {
-                newItemQuantity = existingItem[0].maxProducts;
-            }
-            
-            if (newItemQuantity < existingItem[0].minProducts) {
-                newItemQuantity = existingItem[0].minProducts;
-            }
-
-            const newCart = {
-                totalItemQuantity: newTotalItemQuantity + newItemQuantity,
-                items: [
-                    ...cartItemsWithoutThisItem,
-                    {
-                        ...existingItem[0],
-                        quantity: newItemQuantity,
-                    },
-                ],
-            };
-            setCart(newCart);
-        }
-    }
-    
-    function addItem(newItem) {
-        const { itemExists, existingItem, cartItemsWithoutThisItem } = checkIfCartItemExists(newItem.id);
-
-        let cartItems = cart.items;
-        let newItemQuantity = newItem.quantity;
-        let newTotalItemQuantity = cart.totalItemQuantity;
-        let itemOrder = cart.items.length + 1;
-
-        if(itemExists){
-            cartItems = cartItemsWithoutThisItem;
-            newItemQuantity += existingItem[0].quantity;
-            newTotalItemQuantity -= existingItem[0].quantity;
+            totalItemQuantity -= existingItem[0].quantity;
             itemOrder = existingItem[0].order;
         }
 
-        if (newItemQuantity > newItem.maxProducts) {
-            newItemQuantity = newItem.maxProducts;
+        if (newItemQuantity > maxProducts) {
+            newItemQuantity = maxProducts;
         }
-        if (newItemQuantity < newItem.minProducts) {
-            newItemQuantity = newItem.minProducts;
+        if (newItemQuantity < minProducts) {
+            newItemQuantity = minProducts;
         }
-
+        
         const newCart = {
-            totalItemQuantity: newTotalItemQuantity + newItemQuantity,
+            totalItemQuantity: totalItemQuantity + newItemQuantity,
             items: [
                 ...cartItems, 
                 {
                     ...newItem,
                     order: itemOrder,
                     quantity: newItemQuantity,
-                }
+                },
             ],
         };
         setCart(newCart);
@@ -124,7 +91,7 @@ export function CartProvider ({initialValue = emptyCart, children}){
     }
 
     return (
-        <CartContext.Provider value={{ cart, addItem, modifyItemQuantity, deleteCartItem, deleteAllCartItems, isCartEmpty, totalCartPrice }}>
+        <CartContext.Provider value={{ cart, addItem, checkIfCartItemExists, deleteCartItem, deleteAllCartItems, isCartEmpty, totalCartPrice }}>
             {children}
         </CartContext.Provider>
     );

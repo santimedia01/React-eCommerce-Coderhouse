@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: 'auto',
         height: 80,
     },
-    titleAndDescription:{
+    titleAndDescription: {
         [theme.breakpoints.down('sm')]: {
             borderLeft: '2px solid ' + theme.palette.divider,
             paddingLeft: theme.spacing(2),
@@ -89,15 +89,16 @@ const rawClasses = {
     },
 }
 
-export default function Main({ item }) {
+export default function Main({item}) {
     const { id, name, price, shortSpecs, image, quantity, minProducts, maxProducts } = item;
 
     const classes = useStyles();
+
     const [inputsQuantity, setInputsQuantity] = React.useState(quantity);
-    const { deleteCartItem, modifyItemQuantity } = useCartContext();
+    const { deleteCartItem, addItem } = useCartContext();
 
     React.useEffect(() => {
-        modifyItemQuantity(id, inputsQuantity);
+        addItem({...item, quantity: inputsQuantity});
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [inputsQuantity]);

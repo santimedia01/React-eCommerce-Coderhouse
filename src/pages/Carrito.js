@@ -71,15 +71,15 @@ export default function Main() {
             ¡El carrito está vacío!
             <br /> <br />
             <Link to="/" className={classes.textDecorationNone}>
-                <Button variant="outlined" color="primary" href="/" component="div">Volver a la Página Principal</Button>
+                <Button variant="outlined" color="primary" component="div">Volver a la Página Principal</Button>
             </Link>
         </Paper>
     );
 
     const renderTotalPrice = (
         <div className={classes.total}>
-            <Typography variant="h6" color="primary">Total: $<strong>{totalCartPrice()}</strong></Typography>
-            <Link to="/checkout">
+            <Typography variant="h6" color="primary">Total: $<strong>{ totalCartPrice().toLocaleString() }</strong></Typography>
+            <Link to="/checkout" className={classes.textDecorationNone}>
                 <Button className={classes.toCheckoutButton} variant="contained" size="small" color="primary">Proceder al Checkout</Button>
             </Link>
         </div>
@@ -103,7 +103,7 @@ export default function Main() {
                 {
                     isCartEmpty() ? renderEmptyCartInfo :
                     <>
-                        { cart.items.sort((item, nextItem) => item.order - nextItem.order).map((item) => <CartItem key={item.id} item={item} />) }
+                        { cart.items.sort((item, nextItem) => item.order - nextItem.order).map((item) => <CartItem key={item.order} item={item} />) }
                         { renderTotalPrice }
                     </>
                 }

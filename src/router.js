@@ -13,6 +13,8 @@ import Navbar from './components/common/navbar/Navbar';
 
 import {CartProvider} from './contexts/cartContext';
 
+
+
 const Router = () => (
   <HashRouter>
     <CartProvider>
@@ -20,7 +22,7 @@ const Router = () => (
       <Switch>
         <Route exact path="/" component={PaginaPrincipal} />
         <Route exact path="/carrito" component={Carrito} />
-        <Route exact path="/checkout" component={Checkout} />
+        <Route exact path="/checkout" component={Checkout} /> 
         <Route path="/productos/:id" component={Producto} />
         <Route component={PaginaNoEncontrada} />
       </Switch>

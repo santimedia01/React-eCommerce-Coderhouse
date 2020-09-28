@@ -71,7 +71,8 @@ const useStyles = makeStyles((theme) => ({
 export default function Main({ item }) {
     const { id, name, price, shortSpecs, description, image, minProducts, maxProducts } = item;
     const [quantity, setQuantity] = useState(minProducts);
-    const {addItem, deleteCartItem} = useCartContext();
+    const {addItem, deleteCartItem, checkIfCartItemExists} = useCartContext();
+    const {itemExists, existingItem} = checkIfCartItemExists(id);
     const classes = useStyles();
     //const today = new Date();
     //const day = today.getDate();
@@ -82,11 +83,13 @@ export default function Main({ item }) {
         setQuantity(quantityItemCount);
     };
 
-    const onAddedToCart = (itemNewQuantity) => {
-        addItem({
-            ...item,
-            quantity: itemNewQuantity,
-        });
+    const onAddedToCart = (quantity) => {
+        let newItem = {...item, quantity: quantity};
+        if(itemExists){
+            newItem = {...item, quantity: quantity + existingItem[0].quantity}
+        }
+
+        addItem(newItem);
     };
 
     const onDeletedFromCart = () => {

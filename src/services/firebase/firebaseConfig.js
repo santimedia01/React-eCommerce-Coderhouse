@@ -12,6 +12,10 @@ var firebaseConfig = firebase.initializeApp({
     measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 });
 
+export function getFirebase() {
+    return firebase;
+};
+
 export function getFirestore() {
     return firebase.firestore(firebaseConfig);
 };
