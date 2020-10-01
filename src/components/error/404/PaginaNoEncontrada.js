@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function PaginaNoEncontrada ({productNotFound = false}) {
+export default function PaginaNoEncontrada ({productNotFound = false, categoryNotFoundOrHasNoneItems = false}) {
     const classes = useStyles();
 
     return(
@@ -32,6 +32,9 @@ export default function PaginaNoEncontrada ({productNotFound = false}) {
             <Typography className={classes.title} variant="h3" component="h1">¡Buscamos! <br /> pero <br /> sin éxito</Typography>
             {productNotFound ? 
                 <Typography className={classes.subTitle} variant="h4" component="h2">Producto no encontrado</Typography> : ''
+            }
+            {categoryNotFoundOrHasNoneItems ? 
+                <Typography className={classes.subTitle} variant="h4" component="h2">Categoría no encontrada o no quedan productos</Typography> : ''
             }
             <Link to="/" className={classes.textDecorationNone}>
                 <Button className={classes.button} variant="outlined" color="primary" href="/" component="div">Volver a la Página Principal</Button>

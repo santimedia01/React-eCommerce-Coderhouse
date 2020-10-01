@@ -10,10 +10,11 @@ import Producto from "./pages/Producto";
 import Carrito from "./pages/Carrito";
 import Checkout from "./pages/Checkout";
 import Navbar from './components/common/navbar/Navbar';
+import ListadoProductosCategorias from './pages/ListadoProductosCategoria';
 
 import {CartProvider} from './contexts/cartContext';
 
-
+//import {uploadProduct} from './services/firebase/firestoreServiceAdminAPI';
 
 const Router = () => (
   <HashRouter>
@@ -24,6 +25,10 @@ const Router = () => (
         <Route exact path="/carrito" component={Carrito} />
         <Route exact path="/checkout" component={Checkout} /> 
         <Route path="/productos/:id" component={Producto} />
+        <Route path="/categorias/:name" component={ListadoProductosCategorias} />
+        <Route exact path="/admin">
+          {/*uploadProduct("Yeso", "Yeso Tuyango Monocapa Manual", "Caract.Adicional	Conservar en envase original, perfectamente cerrado, en lugar seco, fresco y no expuesto al sol", "25kg", "https://media.easy.com.ar/is/image/EasyArg/1019269-1", 265, 1, 499.69, 2500, 654, "1-Yeso-Tuyango-Monocapa-Manual-30kg")*/}
+        </Route> 
         <Route component={PaginaNoEncontrada} />
       </Switch>
     </CartProvider>

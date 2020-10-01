@@ -48,7 +48,6 @@ export default function Main(){
         
         const onRequestCompleted = () => {
             setOrderShipped(true);
-            console.log("shipped");
         };
 
         // Pendiente mejora del context de la app, para no redundar en los cálculos totales de los artículos

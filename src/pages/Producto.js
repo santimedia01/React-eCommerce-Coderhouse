@@ -18,7 +18,7 @@ export default function Main() {
                 setActualItem(querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id})));
             }
         });
-        //
+        
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
