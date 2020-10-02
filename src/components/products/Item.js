@@ -6,7 +6,7 @@ import { makeStyles, Card, CardActionArea, CardActions, CardContent, CardMedia, 
 const useStyles = makeStyles((theme) => ({
     root:{
         maxWidth: 245,
-        height: 380,
+        height: 400,
         position: "relative",
     },
     media:{
