@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import {Redirect} from 'react-router-dom';
 
 import { makeStyles, Grid, Typography, Paper, Button } from '@material-ui/core';
 
@@ -70,9 +71,13 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Main({ item }) {
     const { id, name, price, shortSpecs, description, image, minProducts, maxProducts } = item;
+    
     const [quantity, setQuantity] = useState(minProducts);
+    const [redirectToCart, setRedirectToCart] = useState(false);
+    
     const {addItem, deleteCartItem, checkIfCartItemExists} = useCartContext();
     const {itemExists, existingItem} = checkIfCartItemExists(id);
+    
     const classes = useStyles();
 
     const onQuantityChange = (quantityItemCount) => {
@@ -87,12 +92,24 @@ export default function Main({ item }) {
 
         addItem(newItem);
     };
+    
+    const onBuyButton = () => {
+        let newItem = {...item, quantity: quantity};
+        if(itemExists){
+            newItem = {...item, quantity: quantity + existingItem[0].quantity}
+        }
+
+        addItem(newItem);
+        setRedirectToCart(true);
+    };
 
     const onDeletedFromCart = () => {
         deleteCartItem(id);
     };
 
     return(
+        <>
+        { redirectToCart ? <Redirect to='/carrito' /> : '' }
         <div className={classes.root}>
             <Grid className={classes.gridContainer} container spacing={1}>
                 <Grid item xs={12} md={8}>
@@ -127,11 +144,12 @@ export default function Main({ item }) {
                     {description}
                 </Grid>
                 <Grid item xs={12} md={4} className={classes.buyContainer}>
-                    <Button className={classes.buyButton} variant="contained" color="primary">
+                    <Button className={classes.buyButton} variant="contained" color="primary" onClick={onBuyButton}>
                         Comprar {quantity}
                     </Button>
                 </Grid>
             </Grid>
         </div>
+        </>
     );
 }
