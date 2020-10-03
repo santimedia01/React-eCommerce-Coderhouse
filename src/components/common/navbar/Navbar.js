@@ -216,8 +216,8 @@ export default function PrimaryAppBar() {
     >
       { 
         categories.map( ({categoryName, categoryNumber}) => (
-          <Link key={categoryNumber} to={`/categorias/${categoryName}`} className={classes.textDecorationNone}>
-            <MenuItem>{categoryName}</MenuItem>
+          <Link key={"link " + categoryNumber} to={`/categorias/${categoryName}`} className={classes.textDecorationNone}>
+            <MenuItem key={categoryNumber}>{categoryName}</MenuItem>
           </Link>
         ))
       }

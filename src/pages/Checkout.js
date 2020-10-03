@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Main(){
-    const { cart, totalCartPrice, isCartEmpty } = useCartContext();
+    const { cart, totalCartPrice, isCartEmpty, deleteAllCartItems } = useCartContext();
     
     const classes = useStyles();
     const [orderShipped, setOrderShipped] = React.useState(false);
@@ -26,6 +26,7 @@ export default function Main(){
     const [nombres, setNombres] = React.useState("");
     const [apellidos, setApellidos] = React.useState("");
     const [email, setEmail] = React.useState("");
+    const [verificationEmail, setVerificationEmail] = React.useState("");
     const [telefono, setTelefono] = React.useState("");
     
     if(isCartEmpty()){
@@ -33,6 +34,8 @@ export default function Main(){
             <Redirect to="/" />
         );
     }
+
+    const isOrderReady = () => email === verificationEmail && email && apellidos && nombres && telefono;
 
     const onOrderSent = () => {
         const buyer = {
@@ -52,6 +55,10 @@ export default function Main(){
 
         // Pendiente mejora del context de la app, para no redundar en los cálculos totales de los artículos
         createNewBuyOrder(buyer, items, totalCartPrice(), onRequestCompleted);
+
+        setTimeout(() => {
+            deleteAllCartItems(); // Cuando el carrito está vacio, automaticamente se redirecciona a la página principal
+        }, 5200);        
     };
 
     return (
@@ -83,15 +90,23 @@ export default function Main(){
                 </Grid>
                 <Grid item xs={12} md={6}>
                     <TextField 
+                        name="email" type="text" value={verificationEmail} onChange={(event) => setVerificationEmail(event.target.value)}
+                        label="E-Mail"
+                        variant="outlined" fullWidth
+                    />
+                </Grid>
+                <Grid item xs={12} md={12}>
+                    <TextField
                         name="telefono" type="number" value={telefono} onChange={(event) => setTelefono(event.target.value)}
                         label="Teléfono"
                         variant="outlined" fullWidth
                     />
                 </Grid>
+                {!isOrderReady() ? <> <br />El correo debe ser el mismo y todos los datos son obligatorios.</> : <><br />¡Puedes pedir tu orden!</>}
             </Grid>
-            <Button className={classes.sendOrderButton} variant="contained" color="primary" fullWidth onClick={onOrderSent}>enviar orden</Button>
+            <Button className={classes.sendOrderButton} variant="contained" color="primary" fullWidth onClick={onOrderSent} disabled={!isOrderReady()}>enviar orden</Button>
         </Container>
-        : "¡Orden enviada exitosamente!"}
+        : '¡Orden enviada exitosamente! Redireccionandote al inicio en 5 segundos...'}
         </>
     );
 }
