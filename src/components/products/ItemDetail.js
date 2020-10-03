@@ -94,12 +94,7 @@ export default function Main({ item }) {
     };
     
     const onBuyButton = () => {
-        let newItem = {...item, quantity: quantity};
-        if(itemExists){
-            newItem = {...item, quantity: quantity + existingItem[0].quantity}
-        }
-
-        addItem(newItem);
+        onAddedToCart(quantity);
         setRedirectToCart(true);
     };
 
