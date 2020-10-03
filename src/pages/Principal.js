@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles, Typography } from '@material-ui/core';
 
-import {getItemsByCategory} from '../services/firebase/firestoreService';
+import {getMostSelledProducts} from '../services/firebase/firestoreService';
 
 import ItemList from '../components/products/ItemList';
 import Loading from '../components/common/loading/Loading';
@@ -18,9 +18,9 @@ export default function Main() {
     const classes = useStyles();
     const [items, setItems] = React.useState([]);
     const [isFetchingItems, setIsFetchingItems] = React.useState(true);
-    
+
     React.useEffect(() => { 
-        getItemsByCategory("Ladrillos", setItems);
+        getMostSelledProducts(setItems);
 
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
@@ -31,7 +31,7 @@ export default function Main() {
 
     return(
         <>
-            <Typography className={classes.sectionTitles} variant="h5" component="div">Ladrillos</Typography>
+            <Typography className={classes.sectionTitles} variant="h5" component="div">Productos más vendidos (+40.000 ventas)</Typography>
             {isFetchingItems ? <Loading /> : <ItemList items={items} />}
         </>
     );

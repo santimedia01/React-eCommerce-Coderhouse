@@ -7,7 +7,7 @@ const fb = getFirebase();
 
 export function getItemsByCategory(categoryName, onRequestCompleted = () => {}, onRequestFailed = () => {}){
     const category = db.collection('categorias').where('categoryName', '==', categoryName).get();
-
+    
     category.then((querySnapshotCategory) => {
         if(querySnapshotCategory.size > 0) {
             const id = querySnapshotCategory.docs.map(doc => doc.id)[0];
@@ -19,6 +19,18 @@ export function getItemsByCategory(categoryName, onRequestCompleted = () => {}, 
             }).catch((error) => {
                 onRequestFailed(error);
             });
+        }
+    }).catch((error) => {
+        onRequestFailed(error);
+    });
+}
+
+export function getMostSelledProducts(onRequestCompleted = () => {}, onRequestFailed = () => {}){
+    const products = db.collection("productos").where("selledQuantity", ">", 40000).orderBy("selledQuantity", "desc").get();
+    products.then((querySnapshot) => {
+        if(querySnapshot.size > 0) {
+            const requestedItems = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+            onRequestCompleted(requestedItems);
         }
     }).catch((error) => {
         onRequestFailed(error);
