@@ -35,5 +35,4 @@ export function uploadProduct(categoryName, name, description, shortSpecs, image
     }).catch((error) => {
         console.log(error);
     });
-
 }

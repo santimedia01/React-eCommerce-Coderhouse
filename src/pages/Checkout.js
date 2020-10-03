@@ -21,6 +21,7 @@ export default function Main(){
     
     const classes = useStyles();
     const [orderShipped, setOrderShipped] = React.useState(false);
+    const [orderID, setOrderID] = React.useState("");
     
     // Pendiente mejora de la implementación de formularios
     const [nombres, setNombres] = React.useState("");
@@ -49,16 +50,18 @@ export default function Main(){
             ...cart.items.map((item) => ({id: item.id, quantity: item.quantity})),
         ];
         
-        const onRequestCompleted = () => {
+        const onRequestCompleted = (order) => {
             setOrderShipped(true);
+            setOrderID(order);
+
+            setTimeout(() => {
+                // Cuando el carrito está vacio, automaticamente se redirecciona a la página principal
+                deleteAllCartItems();
+            }, 15000);      
         };
 
         // Pendiente mejora del context de la app, para no redundar en los cálculos totales de los artículos
         createNewBuyOrder(buyer, items, totalCartPrice(), onRequestCompleted);
-
-        setTimeout(() => {
-            deleteAllCartItems(); // Cuando el carrito está vacio, automaticamente se redirecciona a la página principal
-        }, 5200);        
     };
 
     return (
@@ -106,7 +109,7 @@ export default function Main(){
             </Grid>
             <Button className={classes.sendOrderButton} variant="contained" color="primary" fullWidth onClick={onOrderSent} disabled={!isOrderReady()}>enviar orden</Button>
         </Container>
-        : '¡Orden enviada exitosamente! Redireccionandote al inicio en 5 segundos...'}
+        : <> ¡Orden enviada exitosamente! <br /><br /> Tu ID de orden es: {orderID} <br /><br /> Redireccionandote al inicio en 15 segundos... </>}
         </>
     );
 }
