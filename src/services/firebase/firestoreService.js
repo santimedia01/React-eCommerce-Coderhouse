@@ -5,6 +5,20 @@ import {getFirestore, getFirebase} from './firebaseConfig';
 const db = getFirestore();
 const fb = getFirebase();
 
+export function getItemByUrlName(id, onRequestCompleted = () => {}, onRequestFailed = () => {}){
+    const requestedItem = getFirestore().collection('productos').where('uniqueProductUrlName', '==', id).get();
+        
+    requestedItem.then((querySnapshot) => {
+        if(querySnapshot.size > 0) {
+            onRequestCompleted(querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id})));
+        } else {
+            onRequestFailed(true);
+        }
+    }).catch((error) => {
+        onRequestFailed(error);
+    });
+}
+
 export function getItemsByCategory(categoryName, onRequestCompleted = () => {}, onRequestFailed = () => {}){
     const category = db.collection('categorias').where('categoryName', '==', categoryName).get();
     
@@ -14,11 +28,17 @@ export function getItemsByCategory(categoryName, onRequestCompleted = () => {}, 
             const categoryRef = db.collection("categorias").doc(id);
             const items = db.collection('productos').where('category', '==', categoryRef).get();
             items.then((querySnapshotItems) => {
-                const requestedItems = querySnapshotItems.docs.map(doc => ({...doc.data(), id: doc.id}));
-                onRequestCompleted(requestedItems);
+                if(querySnapshotItems.size > 0){
+                    const requestedItems = querySnapshotItems.docs.map(doc => ({...doc.data(), id: doc.id}));
+                    onRequestCompleted(requestedItems);
+                }  else {
+                    onRequestFailed(true);
+                }
             }).catch((error) => {
                 onRequestFailed(error);
             });
+        } else {
+            onRequestFailed(true);
         }
     }).catch((error) => {
         onRequestFailed(error);

@@ -20,28 +20,24 @@ const classes = {
 export default function Main() {
     const {name} = useParams();
     const [items, setItems] = React.useState([]);
-    const [isFetchingItems, setIsFetchingItems] = React.useState(true);
+    const [itemNotFound, setItemNotFound] = React.useState(false);
     //TODO: isFetchingItem con el mockup gris de cosas cargando de material UI
 
     React.useEffect(() => {
-        getItemsByCategory(name, setItems);
+        setItems([]);
+        setItemNotFound(false);
+        getItemsByCategory(name, setItems, setItemNotFound);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [name]);
 
-    React.useEffect(() => {
-        if (items !== []){
-            setIsFetchingItems(false);
-        }
-    }, [items])
-
     return(
         <>
-            { isFetchingItems ? <Loading /> : items.length > 0 ? 
+            { items.length > 0 ? 
                 <>
                     <Typography style={classes.categorieTitle} variant="h4" color="initial">Categoría: {name}</Typography>
                     <ItemList items={items} /> 
                 </>
-            : <PaginaNoEncontrada  categoryNotFoundOrHasNoneItems/>}
+            : itemNotFound ? <PaginaNoEncontrada categoryNotFoundOrHasNoneItems/> :  <Loading />}
         </>
     );
 }

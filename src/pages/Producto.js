@@ -1,30 +1,28 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
 
-import {getFirestore} from '../services/firebase/firebaseConfig';
+import {getItemByUrlName} from '../services/firebase/firestoreService';
 
 import ItemDetail from '../components/products/ItemDetail';
 import PaginaNoEncontrada from '../components/error/404/PaginaNoEncontrada';
+import Loading from '../components/common/loading/Loading';
 
 export default function Main() {
     const {id} = useParams();
     //TODO: isFetchingItem con el mockup gris de cosas cargando de material UI
-    const [actualItem, setActualItem] = React.useState([]);
+    const [currentItem, setCurrentItem] = React.useState([]);
+    const [itemNotFound, setItemNotFound] = React.useState(false);
+
     React.useEffect(() => {
-        const requestedItem = getFirestore().collection('productos').where('uniqueProductUrlName', '==', id).get();
-        
-        requestedItem.then((querySnapshot) => {
-            if(querySnapshot.size > 0) {
-                setActualItem(querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id})));
-            }
-        });
-        
+        setCurrentItem([]);
+        setItemNotFound(false);
+        getItemByUrlName(id, setCurrentItem, setItemNotFound);
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [id]);
 
     return(
         <>
-            {actualItem.length > 0 ? <ItemDetail item={actualItem[0]} /> : <PaginaNoEncontrada  productNotFound/>}
+            {currentItem.length > 0 ? <ItemDetail item={currentItem[0]} /> : itemNotFound ? <PaginaNoEncontrada productNotFound/> : <Loading /> }
         </>
     );
 }
