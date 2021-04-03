@@ -1,24 +1,24 @@
 {
   "files": {
     "main.css": "/React-eCommerce-Coderhouse/static/css/main.4e613fac.chunk.css",
-    "main.js": "/React-eCommerce-Coderhouse/static/js/main.c8431d63.chunk.js",
-    "main.js.map": "/React-eCommerce-Coderhouse/static/js/main.c8431d63.chunk.js.map",
+    "main.js": "/React-eCommerce-Coderhouse/static/js/main.db02edae.chunk.js",
+    "main.js.map": "/React-eCommerce-Coderhouse/static/js/main.db02edae.chunk.js.map",
     "runtime-main.js": "/React-eCommerce-Coderhouse/static/js/runtime-main.7f397c4d.js",
     "runtime-main.js.map": "/React-eCommerce-Coderhouse/static/js/runtime-main.7f397c4d.js.map",
-    "static/js/2.6f7554d7.chunk.js": "/React-eCommerce-Coderhouse/static/js/2.6f7554d7.chunk.js",
-    "static/js/2.6f7554d7.chunk.js.map": "/React-eCommerce-Coderhouse/static/js/2.6f7554d7.chunk.js.map",
+    "static/js/2.41bbcb6d.chunk.js": "/React-eCommerce-Coderhouse/static/js/2.41bbcb6d.chunk.js",
+    "static/js/2.41bbcb6d.chunk.js.map": "/React-eCommerce-Coderhouse/static/js/2.41bbcb6d.chunk.js.map",
     "index.html": "/React-eCommerce-Coderhouse/index.html",
-    "precache-manifest.d68d09582cc9262a2f90a7be6b088c2f.js": "/React-eCommerce-Coderhouse/precache-manifest.d68d09582cc9262a2f90a7be6b088c2f.js",
+    "precache-manifest.b7a4e6eebcfaf15c9186daf9caf6a50b.js": "/React-eCommerce-Coderhouse/precache-manifest.b7a4e6eebcfaf15c9186daf9caf6a50b.js",
     "service-worker.js": "/React-eCommerce-Coderhouse/service-worker.js",
     "static/css/main.4e613fac.chunk.css.map": "/React-eCommerce-Coderhouse/static/css/main.4e613fac.chunk.css.map",
-    "static/js/2.6f7554d7.chunk.js.LICENSE.txt": "/React-eCommerce-Coderhouse/static/js/2.6f7554d7.chunk.js.LICENSE.txt",
+    "static/js/2.41bbcb6d.chunk.js.LICENSE.txt": "/React-eCommerce-Coderhouse/static/js/2.41bbcb6d.chunk.js.LICENSE.txt",
     "static/media/404.png": "/React-eCommerce-Coderhouse/static/media/404.c0a4937e.png",
     "static/media/Loading.gif": "/React-eCommerce-Coderhouse/static/media/Loading.829ae23f.gif"
   },
   "entrypoints": [
     "static/js/runtime-main.7f397c4d.js",
-    "static/js/2.6f7554d7.chunk.js",
+    "static/js/2.41bbcb6d.chunk.js",
     "static/css/main.4e613fac.chunk.css",
-    "static/js/main.c8431d63.chunk.js"
+    "static/js/main.db02edae.chunk.js"
   ]
 }
