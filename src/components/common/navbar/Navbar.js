@@ -187,6 +187,7 @@ export default function PrimaryAppBar() {
   );
   */
 
+  /*
   const renderSearchBox = (
     <div className={classes.search}>
       <div className={classes.searchIcon}>
@@ -195,6 +196,7 @@ export default function PrimaryAppBar() {
       <InputBase placeholder="Buscar productos..." classes={{root: classes.inputRoot, input: classes.inputInput}} inputProps={{ 'aria-label': 'search' }} />
     </div>
   );
+  */
 
   const renderShoppingCartMenuIcon = (
     <IconButton aria-label="carrito de compras" color="inherit">
@@ -247,7 +249,7 @@ export default function PrimaryAppBar() {
       onClose={handleMobileMenuClose}
     >
       <MenuItem>
-        {renderSearchBox}
+        {/*renderSearchBox*/}
       </MenuItem>
       <MenuItem onClick={handleCategoriesMenuOpen}>
         {renderCategoriesMenuButton}
@@ -287,7 +289,7 @@ export default function PrimaryAppBar() {
           </Link>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            {renderSearchBox} 
+            {/*renderSearchBox*/} 
             {/* MENU DE PERFIL DE USUARIO {renderProfileUserMenuIcon} */}
             <Link to="/carrito" className={classes.textDecorationNone}>
               {renderShoppingCartMenuIcon}
