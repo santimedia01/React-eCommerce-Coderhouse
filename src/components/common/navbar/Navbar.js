@@ -1,11 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-import { AppBar, Toolbar, Button, IconButton, Typography, Menu, MenuItem, makeStyles, InputBase, Badge, fade} from '@material-ui/core';
+import { AppBar, Toolbar, Button, IconButton, Typography, Menu, MenuItem, makeStyles, /*InputBase,*/ Badge, fade} from '@material-ui/core';
  
 import MenuIcon from '@material-ui/icons/Menu';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
-import SearchIcon from '@material-ui/icons/Search';
+//import SearchIcon from '@material-ui/icons/Search';
 import StoreIcon from '@material-ui/icons/Store';
 import ListIcon from '@material-ui/icons/List';
 /*
